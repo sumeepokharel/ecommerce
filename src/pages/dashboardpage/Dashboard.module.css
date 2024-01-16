@@ -1,0 +1,54 @@
+.cardContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  width: 250px;
+  box-sizing: border-box;
+  margin-bottom: 20px; /* Add margin between cards */
+}
+
+.cardImage {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-bottom: 1px solid #ccc;
+}
+
+.cardContent {
+  padding: 15px;
+  text-align: center;
+}
+
+.productName {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.productDescription {
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+}
+
+.productPrice {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.addToCartButton {
+  width: 100%;
+  background-color: #2196f3; /* Blue color, change as needed */
+  color: #fff; /* White text */
+  padding: 8px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.addToCartButton:hover {
+  background-color: #1565c0; /* Darker shade on hover */
+}

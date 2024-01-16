@@ -1,0 +1,78 @@
+.navigation-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+  border-color: #0417e1;
+  border: 3px;
+  padding: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.brand-container {
+  display: flex;
+  align-items: center;
+}
+body.modal-open {
+  overflow: hidden;
+}
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.new-shopping-icon {
+  font-size: 28px;
+  margin-right: 5px;
+  color: #edf2f7;
+}
+
+.brand-name {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-right: 15px;
+}
+
+.nav-menu {
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+}
+
+.nav-menu li {
+  margin-right: 15px;
+  font-size: 16px;
+  color: #555;
+  cursor: pointer;
+}
+
+.nav-menu li:hover {
+  color: #007bff;
+}
+
+.nav-login-cart {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.nav-button {
+  background-color: #0774e9;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.nav-button:hover {
+  background-color: #bfcad6;
+}
+
+.shopping-cart-icon {
+  font-size: 28px;
+  color: #ff4500;
+}
