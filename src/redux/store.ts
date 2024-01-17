@@ -1,10 +1,19 @@
+"use client";
 import { configureStore } from "@reduxjs/toolkit";
+import cartReducer from "./cartSlice";
+import productReducer from "./productSlice";
+
+import { combineReducers } from "redux";
+import wishListSliceReducer from "./wishListSlice";
 import authReducer from "./authSlice";
 
-const store = configureStore({
+export const store = configureStore({
   reducer: {
+    cart: cartReducer,
+    products: productReducer,
+    wishlist: wishListSliceReducer,
     auth: authReducer,
   },
 });
-
-export default store;
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;

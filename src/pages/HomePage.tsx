@@ -1,53 +1,35 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { Box } from "@mui/material";
-import { styled } from "@mui/material";
-
-import Dashboard from "./dashboardpage/dashboard";
+import { fetchProducts } from "./fetchproduct";
+import styles from "./HomePage.module.css";
 
 interface Product {
-  id: string;
+  id: number;
   name: string;
   description: string;
   price: number;
   category: string;
+  imageUrl: string;
 }
 
-const StyledBox = styled(Box)({
-  marginLeft: "15px",
-  display: "grid",
-  alignItems: "center",
-  gridTemplateColumns: "1fr 1fr 1fr 1fr",
-  columnGap: "10px",
-});
-
 const HomePage: React.FC = () => {
-  const [productsByCategory, setProductsByCategory] = useState<{
-    [key: string]: Product[];
-  }>({});
+  const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedProducts, setSelectedProducts] = useState<Product[]>([]);
 
   useEffect(() => {
-    // Fetch products for each category when the component mounts
-    fetchProductsByCategory("women");
-    fetchProductsByCategory("men");
-    fetchProductsByCategory("kids");
-    fetchProductsByCategory("footwear");
+    // Fetch the first 5 products when the component mounts
+    fetchFirstFiveProducts();
   }, []);
 
-  const fetchProductsByCategory = async (category: string) => {
+  const fetchFirstFiveProducts = async () => {
     try {
-      const response = await axios.get(
-        `http://localhost:8555/products/${category}`
-      );
-      console.log(`${category} Products:`, response.data);
-      setProductsByCategory((prevProducts) => ({
-        ...prevProducts,
-        [category]: response.data.slice(0, 5),
-      }));
+      const allProducts = await fetchProducts();
+      console.log("All Products:", allProducts);
+
+      // Set only the first 5 products
+      setProducts(allProducts.slice(2, 7));
     } catch (error) {
-      console.error(`Error fetching ${category} products:`, error);
+      console.error("Error fetching products:", error);
     } finally {
       setLoading(false);
     }
@@ -59,35 +41,37 @@ const HomePage: React.FC = () => {
 
   return (
     <div>
-      <StyledBox>
+      <div className={styles.container}>
         {loading ? (
           <p>Loading ... </p>
         ) : (
           <>
-            {Object.keys(productsByCategory).map((category) => (
-              <React.Fragment key={category}>
-                <h2>{category}</h2>
-                {productsByCategory[category].map((product) => (
-                  <Dashboard
-                    key={product.id}
-                    product={product}
-                    addToCart={() => addToCart(product)}
-                  />
-                ))}
-              </React.Fragment>
+            {products.map((product) => (
+              <div key={product.id} className={styles.productCard}>
+                <h4 className={styles.productName}>{product.name}</h4>
+                <p className={styles.productDescription}>
+                  {product.description}
+                </p>
+                <img
+                  src={product.imageUrl}
+                  alt={`Product ${product.name}`}
+                  className={styles.productImage}
+                />
+                <h5 className={styles.productPrice}>
+                  {product.price !== undefined && product.price !== null
+                    ? `$${product.price.toFixed(2)}`
+                    : "Price not available"}
+                </h5>
+                <button
+                  className={styles.addToCartButton}
+                  onClick={() => addToCart(product)}
+                >
+                  Add to Cart
+                </button>
+              </div>
             ))}
           </>
         )}
-      </StyledBox>
-      <div>
-        <h2>Shopping Cart</h2>
-        {selectedProducts.map((product) => (
-          <div key={product.id}>
-            <p>{product.name}</p>
-            <p>{product.description}</p>
-            <p>{product.price}</p>
-          </div>
-        ))}
       </div>
     </div>
   );
