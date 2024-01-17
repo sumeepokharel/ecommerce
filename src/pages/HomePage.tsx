@@ -3,10 +3,10 @@ import { fetchProducts } from "./fetchproduct";
 import styles from "./HomePage.module.css";
 
 interface Product {
-  id: number;
-  name: string;
-  description: string;
-  price: number;
+  productId: number;
+  productName: string;
+  productDescription: string;
+  productPrice: number;
   category: string;
   imageUrl: string;
 }
@@ -14,29 +14,23 @@ interface Product {
 const HomePage: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
-  const [selectedProducts, setSelectedProducts] = useState<Product[]>([]);
 
   useEffect(() => {
-    // Fetch the first 5 products when the component mounts
-    fetchFirstFiveProducts();
+    // Fetch all products when the component mounts
+    fetchAllProducts();
   }, []);
 
-  const fetchFirstFiveProducts = async () => {
+  const fetchAllProducts = async () => {
     try {
       const allProducts = await fetchProducts();
-      console.log("All Products:", allProducts);
+      console.log("API Response:", allProducts);
 
-      // Set only the first 5 products
-      setProducts(allProducts.slice(2, 7));
+      setProducts(allProducts);
     } catch (error) {
       console.error("Error fetching products:", error);
     } finally {
       setLoading(false);
     }
-  };
-
-  const addToCart = (product: Product) => {
-    setSelectedProducts((prevProducts) => [...prevProducts, product]);
   };
 
   return (
@@ -47,27 +41,22 @@ const HomePage: React.FC = () => {
         ) : (
           <>
             {products.map((product) => (
-              <div key={product.id} className={styles.productCard}>
-                <h4 className={styles.productName}>{product.name}</h4>
+              <div key={product.productId} className={styles.productCard}>
+                <h4 className={styles.productName}>{product.productName}</h4>
                 <p className={styles.productDescription}>
-                  {product.description}
+                  {product.productDescription}
                 </p>
                 <img
                   src={product.imageUrl}
-                  alt={`Product ${product.name}`}
+                  alt={`Product ${product.productName}`}
                   className={styles.productImage}
                 />
                 <h5 className={styles.productPrice}>
-                  {product.price !== undefined && product.price !== null
-                    ? `$${product.price.toFixed(2)}`
+                  {product.productPrice !== undefined &&
+                  product.productPrice !== null
+                    ? `$${product.productPrice.toFixed(2)}`
                     : "Price not available"}
                 </h5>
-                <button
-                  className={styles.addToCartButton}
-                  onClick={() => addToCart(product)}
-                >
-                  Add to Cart
-                </button>
               </div>
             ))}
           </>

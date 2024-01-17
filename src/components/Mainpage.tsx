@@ -7,6 +7,7 @@ import KidsSection from "./KidsSection";
 import image1 from "../../src/components/Assets/images/redcoat.jpg";
 import image2 from "../../src/components/Assets/images/pexels-musaab-zayona-19289550.jpg";
 import styles from "./Main.module.css";
+import HomePage from "../pages/HomePage";
 
 export default function Home() {
   return (
@@ -34,7 +35,7 @@ export default function Home() {
             />
           </div>
         </div>
-
+        <HomePage />
         <MenSection />
         <WomenSection />
         <KidsSection />
