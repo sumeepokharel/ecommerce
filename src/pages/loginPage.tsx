@@ -41,7 +41,7 @@ const LoginPage: React.FC = () => {
     try {
       setLoading(true);
       const response = await axios.post(
-        "http://localhost:8070/validate",
+        "http://localhost:8070",
         { username, password },
         {
           headers: {

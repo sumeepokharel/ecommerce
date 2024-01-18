@@ -1,48 +1,50 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import styles from "./KidsSection.module.css";
 
-interface Product {
-  id: number;
-  title: string;
-  price: number;
-  image: string;
-  category: string;
-  description: string;
+interface KidsProduct {
+  productId: number;
+  productName: string;
+  productPrice: number;
+  imageUrl: string;
+  productDescription: string;
 }
 
-const MenSection: React.FC = () => {
-  const [menProducts, setMenProducts] = useState<Product[]>([]);
+const MensSection: React.FC = () => {
+  const [kidsProducts, setKidsProducts] = useState<KidsProduct[]>([]);
 
   useEffect(() => {
     // Fetch data from the API
     axios
-      .get<Product[]>("http://localhost:8555/products")
+      .get<KidsProduct[]>("http://localhost:8555/products")
       .then((response) => {
-        setMenProducts(response.data.slice(0, 5)); // Adjust the range according to your needs
+        // Filter kids products based on IDs (from 15 to 20)
+        const filteredKidsProducts = response.data.filter(
+          (product) => product.productId >= 9 && product.productId <= 14
+        );
+        setKidsProducts(filteredKidsProducts);
       })
       .catch((error) => {
-        console.error("Error fetching men products:", error);
+        console.error("Error fetching kids products:", error);
       });
   }, []);
 
   return (
-    <div className="m-12">
-      <p className="text-4xl">Men's New Arrivals</p>
-      <div className="flex">
-        <span>Shop All</span>
-        {/* Add any navigation link if needed */}
-      </div>
+    <div className={styles.kidsSectionContainer}>
+      <h1 className={styles.collectionTitle}>MENS COLLECTIONS</h1>
+      <hr className={styles.hrLine} />
 
-      <div className="flex flex-wrap">
-        {menProducts.map((menitem) => (
-          <div key={menitem.id} className="m-4">
-            {/* Render your component for each item */}
-            <div>
-              <img src={menitem.image} alt={menitem.title} />
-              <p>{menitem.title}</p>
-              <p>${menitem.price}</p>
-              <p>{menitem.description}</p>
-            </div>
+      <div className={styles.collections}>
+        {kidsProducts.map((kidsProduct) => (
+          <div key={kidsProduct.productId} className="m-4">
+            <img
+              src={kidsProduct.imageUrl}
+              alt={kidsProduct.productName}
+              className="w-full h-auto"
+            />
+            <p>{kidsProduct.productName}</p>
+            <p>${kidsProduct.productPrice}</p>
+            <p>{kidsProduct.productDescription}</p>
           </div>
         ))}
       </div>
@@ -50,4 +52,4 @@ const MenSection: React.FC = () => {
   );
 };
 
-export default MenSection;
+export default MensSection;

@@ -1,4 +1,8 @@
 import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../redux/cartSlice";
+import { addToWishlist } from "../redux/wishListSlice";
+import { useNavigate } from "react-router-dom";
 import { fetchProducts } from "./fetchproduct";
 import styles from "./HomePage.module.css";
 
@@ -12,6 +16,9 @@ interface Product {
 }
 
 const HomePage: React.FC = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -25,12 +32,39 @@ const HomePage: React.FC = () => {
       const allProducts = await fetchProducts();
       console.log("API Response:", allProducts);
 
-      setProducts(allProducts);
+      // Set only the first eight products
+      setProducts(allProducts.slice(0, 8));
     } catch (error) {
       console.error("Error fetching products:", error);
     } finally {
       setLoading(false);
     }
+  };
+
+  const addToCartHandler = (product: Product) => {
+    dispatch(
+      addToCart({
+        id: product.productId,
+        title: product.productName,
+        category: product.category,
+        price: product.productPrice,
+        quantity: 1,
+        image: product.imageUrl,
+      })
+    );
+    navigate("/cart");
+  };
+
+  const addToWishlistHandler = (product: Product) => {
+    dispatch(
+      addToWishlist({
+        id: product.productId,
+        title: product.productName,
+        category: product.category,
+        price: product.productPrice,
+        image: product.imageUrl,
+      })
+    );
   };
 
   return (
@@ -57,6 +91,20 @@ const HomePage: React.FC = () => {
                     ? `$${product.productPrice.toFixed(2)}`
                     : "Price not available"}
                 </h5>
+                <div className={styles.buttonsContainer}>
+                  <button
+                    className={styles.addToCartButton}
+                    onClick={() => addToCartHandler(product)}
+                  >
+                    Add to Cart
+                  </button>
+                  <button
+                    className={styles.addToWishlistButton}
+                    onClick={() => addToWishlistHandler(product)}
+                  >
+                    Add to Wishlist
+                  </button>
+                </div>
               </div>
             ))}
           </>

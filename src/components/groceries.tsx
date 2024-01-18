@@ -1,5 +1,3 @@
-// KidsSection.jsx
-
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import styles from "./KidsSection.module.css";
@@ -12,7 +10,7 @@ interface KidsProduct {
   productDescription: string;
 }
 
-const KidsSection: React.FC = () => {
+const Groceries: React.FC = () => {
   const [kidsProducts, setKidsProducts] = useState<KidsProduct[]>([]);
 
   useEffect(() => {
@@ -22,7 +20,7 @@ const KidsSection: React.FC = () => {
       .then((response) => {
         // Filter kids products based on IDs (from 15 to 20)
         const filteredKidsProducts = response.data.filter(
-          (product) => product.productId >= 15 && product.productId <= 20
+          (product) => product.productId >= 21 && product.productId <= 25
         );
         setKidsProducts(filteredKidsProducts);
       })
@@ -33,7 +31,7 @@ const KidsSection: React.FC = () => {
 
   return (
     <div className={styles.kidsSectionContainer}>
-      <h1 className={styles.collectionTitle}>KIDS COLLECTIONS</h1>
+      <h1 className={styles.collectionTitle}>GROCERIES</h1>
       <hr className={styles.hrLine} />
 
       <div className={styles.collections}>
@@ -54,4 +52,4 @@ const KidsSection: React.FC = () => {
   );
 };
 
-export default KidsSection;
+export default Groceries;
