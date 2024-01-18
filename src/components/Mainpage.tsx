@@ -7,6 +7,7 @@ import FootWear from "./footwerar";
 import styles from "./Main.module.css";
 import HomePage from "../pages/HomePage";
 import Groceries from "./groceries";
+import Newsletter from "./newletter/Newsletter";
 
 export default function Home() {
   return (
@@ -17,6 +18,7 @@ export default function Home() {
         <MenSection />
         <FootWear />
         <Groceries />
+        <Newsletter />
         <Footer />
       </main>
     </>

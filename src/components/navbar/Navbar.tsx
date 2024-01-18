@@ -4,6 +4,7 @@ import { FaShoppingCart } from "react-icons/fa";
 import LoginPage from "../../pages/loginPage";
 import Registration from "../../pages/Registration";
 import styles from "./navbar.module.css"; // Import the CSS module
+import pic from "../Assets/images/shoppingbag.png";
 
 function Navbar() {
   const [showLoginModal, setShowLoginModal] = useState(false);
@@ -20,6 +21,15 @@ function Navbar() {
   return (
     <div className={styles["navigation-container"]}>
       <div className={styles["brand-container"]}></div>
+      <div className={styles["cart-container"]}>
+        <img
+          src={pic}
+          alt="Shopping Bag"
+          className={styles["new-shopping-icon"]}
+          style={{ width: "50px", height: "50px" }}
+        />
+        <p className={styles["brand-name"]}>ONLINE SHOPPING</p>
+      </div>
       <ul className={styles["nav-menu"]}>
         <li>
           <Link to="/">Home</Link>
@@ -45,10 +55,8 @@ function Navbar() {
         </Link>
       </div>
 
-      {/* Login Modal */}
       {showLoginModal && <LoginPage />}
 
-      {/* Registration Modal */}
       {showRegistrationModal && <Registration />}
     </div>
   );

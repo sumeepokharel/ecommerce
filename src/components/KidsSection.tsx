@@ -18,7 +18,7 @@ const KidsSection: React.FC = () => {
   useEffect(() => {
     // Fetch data from the API
     axios
-      .get<KidsProduct[]>("http://localhost:8555/products")
+      .get<KidsProduct[]>("http://localhost:8060/products")
       .then((response) => {
         // Filter kids products based on IDs (from 15 to 20)
         const filteredKidsProducts = response.data.filter(
