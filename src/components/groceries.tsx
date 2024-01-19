@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import styles from "./KidsSection.module.css";
+import styles from "./Section.module.css";
 
 interface KidsProduct {
   productId: number;

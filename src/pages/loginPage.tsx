@@ -1,119 +1,64 @@
-import React, { useState, useEffect } from "react";
-import axios, { CancelTokenSource } from "axios";
-import { Button, TextField, Typography, Container, Paper } from "@mui/material";
-import { styled } from "@mui/system";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { setToken } from "../../src/redux/authSlice";
+import { setToken } from "../redux/authSlice";
 
-const StyledContainer = styled(Container)({
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  marginTop: "100px",
-});
-
-const StyledPaper = styled(Paper)({
-  padding: "20px",
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-});
-
-const StyledTextField = styled(TextField)({
-  margin: "10px 0",
-});
-
-const StyledButton = styled(Button)({
-  marginTop: "10px",
-});
-
-const LoginPage: React.FC = () => {
+const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState<string | null>(null);
-  const [loading, setLoading] = useState(false);
-  const dispatch = useDispatch(); // Get the dispatch function
-
-  const cancelTokenSource = axios.CancelToken.source();
+  const dispatch = useDispatch();
 
   const handleLogin = async () => {
-    setError(null);
     try {
-      setLoading(true);
-      const response = await axios.post(
-        "http://localhost:8070",
-        { username, password },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-          cancelToken: cancelTokenSource.token,
-        }
-      );
+      const response = await fetch("http://localhost:8070/auth/token", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: username,
+          password: password,
+        }),
+      });
 
-      dispatch(setToken(response.data.jwt)); // Dispatch the setToken action
+      if (response.ok) {
+        const data = await response.json();
+        const token = data.token;
 
-      console.log("Login Successful. Token: ", response.data.jwt);
-      // Redirect or navigate to the dashboard
-    } catch (error) {
-      if (axios.isCancel(error)) {
-        console.log("Request canceled:", error.message);
+        // Store the token in your preferred state management solution (e.g., Redux,)
+
+        dispatch(setToken(token));
+        console.log("Token:", token);
       } else {
-        console.error("Error during login", error);
-        setError("Login failed. Please check your credentials.");
+        console.error("Login failed");
       }
-    } finally {
-      setLoading(false);
+    } catch (error) {
+      console.error("Error:", error);
     }
   };
 
-  useEffect(() => {
-    return () => {
-      cancelTokenSource.cancel("Component unmounted");
-    };
-  }, []);
-
   return (
     <div>
-      <StyledContainer>
-        <StyledPaper elevation={3}>
-          <Typography variant="h4" gutterBottom>
-            Sign In
-          </Typography>
-          <StyledTextField
-            label="Username"
-            variant="outlined"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-          <StyledTextField
-            label="Password"
-            variant="outlined"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <StyledButton
-            onClick={handleLogin}
-            variant="contained"
-            color="primary"
-            disabled={loading}
-          >
-            {loading ? "Logging in..." : "Login"}
-          </StyledButton>
-          {error && (
-            <Typography
-              variant="body2"
-              color="error"
-              style={{ marginTop: "10px" }}
-            >
-              {error}
-            </Typography>
-          )}
-        </StyledPaper>
-      </StyledContainer>
+      <label>
+        Username:
+        <input
+          type="text"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+      </label>
+      <br />
+      <label>
+        Password:
+        <input
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+      </label>
+      <br />
+      <button onClick={handleLogin}>Login</button>
     </div>
   );
 };
 
-export default LoginPage;
+export default Login;

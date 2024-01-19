@@ -8,7 +8,7 @@ import { PiShoppingCartSimpleThin } from "react-icons/pi";
 import { CiHeart } from "react-icons/ci";
 import { RootState, AppDispatch } from "../../redux/store";
 import Footer from "../footer/Footer";
-import { addToWishList } from "../../redux/wishListSlice";
+import { addToWishlist } from "../../redux/wishListSlice";
 import { AiOutlineDown } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import DropMenu from "../pricedrop";
@@ -58,7 +58,7 @@ function ProductList() {
     dispatch(addToCart(item));
   };
   const handleAddToWish = (item: Items) => {
-    dispatch(addToWishList(item));
+    dispatch(addToWishlist(item));
   };
 
   function DropPriceCategory() {
