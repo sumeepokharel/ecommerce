@@ -2,9 +2,13 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { PayloadAction } from "@reduxjs/toolkit";
 
 export interface Product {
+  imageUrl: string | undefined;
+  productPrice: number;
+  productName: string;
+  productDescription: string;
+  productId: number;
   id: number;
-  description: string;
-  title: string;
+
   category: string;
   price: number;
   image: string;

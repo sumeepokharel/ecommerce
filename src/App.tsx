@@ -14,6 +14,7 @@ import Footer from "./components/footer/Footer";
 import MainPage from "./components/Mainpage";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import Checkout from "./pages/Checkout";
 
 const App = () => {
   return (
@@ -48,6 +49,7 @@ const App = () => {
               />
             }
           />
+          <Route path="/checkout" element={<Checkout />} />
         </Routes>
         <Footer />
       </BrowserRouter>
