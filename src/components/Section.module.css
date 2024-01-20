@@ -31,3 +31,25 @@
   object-fit: cover; /* Maintain aspect ratio and cover the container */
   margin-right: 10px;
 }
+.addToCartButton {
+  background-color: rgb(82, 121, 227);
+  color: white;
+  border: 2px solid rgb(133, 133, 227);
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out,
+    border-color 0.3s ease-in-out;
+  transition-delay: 0.1s;
+}
+
+/* Additional styles for the button when hovered */
+.addToCartButton:hover {
+  background-color: lightblue;
+  border-color: lightblue;
+  color: black;
+}
+/* Section.module.css */
+
+.addToWishlistButton {
+  color: white; /* Add your preferred red color */
+  background-color: red;
+  margin-left: 7px;
+}

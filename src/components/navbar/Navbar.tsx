@@ -28,7 +28,7 @@ function Navbar() {
           className={styles["new-shopping-icon"]}
           style={{ width: "50px", height: "50px" }}
         />
-        <p className={styles["brand-name"]}>ONLINE SHOPPING</p>
+        <p className={styles["brand-name"]}>SP ONLINE </p>
       </div>
       <ul className={styles["nav-menu"]}>
         <li>

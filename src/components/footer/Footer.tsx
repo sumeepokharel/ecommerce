@@ -1,4 +1,6 @@
+import React from "react";
 import { FaWhatsapp, FaInstagram, FaPinterest } from "react-icons/fa";
+import { Link } from "react-router-dom"; // Import Link from react-router-dom
 import styles from "./footer.module.css";
 import footer_logo from "../Assets/images/shoppingbag.png";
 
@@ -7,14 +9,18 @@ const Footer = () => {
     <div className={styles.footer}>
       <div className={styles.footerLogo}>
         <img src={footer_logo} alt="" />
-        <p> ONLINE SHOPPING</p>
+        <p> SP ONLINE</p>
       </div>
       <ul className={styles.footerLinks}>
-        <li> Company</li>
+        <li>Company</li>
         <li>Products</li>
         <li>Offices</li>
-        <li>About</li>
-        <li>Contact</li>
+        <li>
+          <Link to="/about">About</Link>
+        </li>
+        <li>
+          <Link to="/contact">Contact</Link>
+        </li>
       </ul>
       <div className={styles.socialIcons}>
         <FaWhatsapp className={styles.icon} />

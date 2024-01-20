@@ -32,3 +32,18 @@
   object-fit: cover; /* Maintain aspect ratio and cover the container */
   margin-right: 10px;
 }
+.addToCartButton {
+  background-color: blue;
+  color: white;
+  border: 2px solid blue;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out,
+    border-color 0.3s ease-in-out;
+  transition-delay: 0.1s;
+}
+
+/* Additional styles for the button when hovered */
+.addToCartButton:hover {
+  background-color: lightblue;
+  border-color: lightblue;
+  color: black;
+}
