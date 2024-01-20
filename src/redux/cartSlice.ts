@@ -1,4 +1,3 @@
-"use client";
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import toast from "react-hot-toast";
@@ -13,15 +12,12 @@ export interface Items {
 }
 export interface CartState {
   items: Items[];
-
   totalAmount: number;
   itemQuantity: number;
 }
 
-// item Quantity needed?
 const initialState: CartState = {
   items: [],
-
   totalAmount: 0,
   itemQuantity: 0,
 };
@@ -45,17 +41,16 @@ export const cartSlice = createSlice({
       toast.success("Item added to cart!");
     },
     deleteItem: (state, action: PayloadAction<number>) => {
-      const itemtoremove = state.items.find(
+      const itemToRemove = state.items.find(
         (item) => item.id === action.payload
       );
-      if (itemtoremove) {
+      if (itemToRemove) {
         state.items = state.items.filter((item) => item.id !== action.payload);
-        state.itemQuantity -= itemtoremove.quantity;
-        state.totalAmount -= itemtoremove.price * itemtoremove.quantity;
+        state.itemQuantity -= itemToRemove.quantity;
+        state.totalAmount -= itemToRemove.price * itemToRemove.quantity;
         state.totalAmount = parseFloat(state.totalAmount.toFixed(2));
       }
     },
-
     increaseItem: (state, action: PayloadAction<number>) => {
       const item = state.items.find((item) => item.id === action.payload);
       if (item) {
@@ -72,8 +67,14 @@ export const cartSlice = createSlice({
         state.totalAmount -= item.price;
       }
     },
+    clearCart: (state) => {
+      state.items = [];
+      state.itemQuantity = 0;
+      state.totalAmount = 0;
+    },
   },
 });
-export const { addToCart, increaseItem, decreaseItem, deleteItem } =
+
+export const { addToCart, increaseItem, decreaseItem, deleteItem, clearCart } =
   cartSlice.actions;
 export default cartSlice.reducer;

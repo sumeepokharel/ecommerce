@@ -15,6 +15,7 @@ import MainPage from "./components/Mainpage";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Checkout from "./pages/Checkout";
+import Wishlist from "./components/wishlist/wishlist";
 
 const App = () => {
   return (
@@ -36,19 +37,8 @@ const App = () => {
           <Route path="/groceries" element={<Groceries />} />
           <Route path="/about" element={<About />} />
           <Route path="/Contact" element={<Contact />} />
-          <Route
-            path="/cart"
-            element={
-              <Cart
-                productId={0}
-                productName={""}
-                productDescription={""}
-                category={""}
-                imageUrl={""}
-                productPrice={0}
-              />
-            }
-          />
+          <Route path="/cart" element={<Cart productId={0} />} />
+          <Route path="/Contact" element={<Wishlist />} />
           <Route path="/checkout" element={<Checkout />} />
         </Routes>
         <Footer />

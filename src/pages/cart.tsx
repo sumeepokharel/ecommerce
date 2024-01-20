@@ -1,25 +1,23 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../redux/store";
-import { Navigate, useNavigate } from "react-router-dom";
-import Checkout from "./Checkout";
 import {
   deleteItem as deleteItemAction,
   increaseItem as increaseItemAction,
   decreaseItem as decreaseItemAction,
+  clearCart as clearCartAction,
 } from "../redux/cartSlice";
+import { Navigate, useNavigate } from "react-router-dom";
+import Checkout from "./Checkout";
 
 interface IInfo {
-  productName: string;
   productId: number;
-  productDescription: string;
-  category: string;
-  imageUrl: string;
-  productPrice: number;
   redirectToCart?: boolean; // New prop to handle navigation
 }
 
 const Cart: React.FC<IInfo> = ({ productId, redirectToCart }) => {
+  const navigate = useNavigate(); // Add this line to get the navigate function
+
   // If redirectToCart is true, navigate to the cart
   if (redirectToCart) {
     return <Navigate to="/cart" />;
@@ -39,7 +37,6 @@ const Cart: React.FC<IInfo> = ({ productId, redirectToCart }) => {
 
   // Dispatch actions for cart operations
   const dispatch = useDispatch();
-  const navigate = useNavigate(); // Use useNavigate hook
 
   const handleDeleteItem = (itemId: number) => {
     dispatch(deleteItemAction(itemId));
@@ -51,6 +48,10 @@ const Cart: React.FC<IInfo> = ({ productId, redirectToCart }) => {
 
   const handleDecreaseItem = (itemId: number) => {
     dispatch(decreaseItemAction(itemId));
+  };
+
+  const handleClearCart = () => {
+    dispatch(clearCartAction());
   };
 
   const handleProceedToCheckout = () => {
@@ -88,14 +89,16 @@ const Cart: React.FC<IInfo> = ({ productId, redirectToCart }) => {
               <tr key={cartItem.id}>
                 <td>{cartItem.title}</td>
                 <td>${cartItem.price}</td>
-                <td>Quantity: {cartItem.quantity}</td>
                 <td>
+                  Quantity: {cartItem.quantity}{" "}
                   <button onClick={() => handleIncreaseItem(cartItem.id)}>
                     +
                   </button>
                   <button onClick={() => handleDecreaseItem(cartItem.id)}>
                     -
                   </button>
+                </td>
+                <td>
                   <button onClick={() => handleDeleteItem(cartItem.id)}>
                     Delete
                   </button>
@@ -112,6 +115,7 @@ const Cart: React.FC<IInfo> = ({ productId, redirectToCart }) => {
             </tr>
           </tbody>
         </table>
+        <button onClick={handleClearCart}>Clear Cart</button>
       </div>
 
       {/* Proceed to Checkout button on the right */}
