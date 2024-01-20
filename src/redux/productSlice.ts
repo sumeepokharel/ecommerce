@@ -46,7 +46,7 @@ const productSlice = createSlice({
       })
       .addCase(
         fetchProduct.fulfilled,
-        (state, action: PayloadAction<Product[]>) => {
+        (state, action: PayloadAction<Product[], string, any>) => {
           state.status = "succeeded";
           state.item = action.payload;
         }

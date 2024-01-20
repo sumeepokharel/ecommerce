@@ -35,19 +35,22 @@ function Navbar() {
           <Link to="/">Home</Link>
         </li>
         <li>
-          <Link to="/men">Men</Link>
+          <Link to="/Men">Men</Link>
         </li>
         <li>
-          <Link to="/women">Women</Link>
+          <Link to="/Women">Women</Link>
         </li>
         <li>
-          <Link to="/kids">Kids</Link>
+          <Link to="/Kids">Kids</Link>
         </li>
         <li>
-          <Link to="/groceries">Groceries</Link>
+          <Link to="/Groceries">Groceries</Link>
         </li>
         <li>
-          <Link to="/footwear">Footwear</Link>
+          <Link to="/Footwear">Footwear</Link>
+        </li>
+        <li>
+          <Link to="/products">Products</Link>
         </li>
       </ul>
       <div className={styles["nav-login-cart"]}>

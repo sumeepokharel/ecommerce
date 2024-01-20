@@ -1,0 +1,34 @@
+.productGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  flex-direction: row;
+}
+
+.product {
+  border: 1px solid #ddd;
+  padding: 10px;
+  width: 200px;
+  box-sizing: border-box;
+}
+
+.product img {
+  max-width: 100%;
+  width: fit-content;
+}
+
+.product-info {
+  margin-top: 10px;
+}
+
+.product-info div {
+  margin-bottom: 5px;
+}
+
+.hrLine {
+  border: 0;
+  height: 1px;
+  background: #e2d1d1;
+  margin: 10px 0;
+  text-align: center;
+}

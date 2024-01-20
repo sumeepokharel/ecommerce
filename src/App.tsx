@@ -16,6 +16,8 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Checkout from "./pages/Checkout";
 import Wishlist from "./components/wishlist/wishlist";
+import ProductDetailPage from "./components/products/productdetail";
+import Products from "./components/products/Products";
 
 const App = () => {
   return (
@@ -29,17 +31,18 @@ const App = () => {
           <Route path="/" element={<HomePage />} />
           <Route path="/SignUp" element={<Registration />} />
           <Route path="/login" element={<LoginPage />} />
-
+          <Route path="/products" element={<Products />} />
+          <Route path="/product/:productId" element={<ProductDetailPage />} />
           <Route path="/Men" element={<MensSection />} />
-          <Route path="/women" element={<WomenSection />} />
-          <Route path="/kids" element={<KidsSection />} />
-          <Route path="/footwear" element={<FootWear />} />
-          <Route path="/groceries" element={<Groceries />} />
-          <Route path="/about" element={<About />} />
+          <Route path="/Women" element={<WomenSection />} />
+          <Route path="/Kids" element={<KidsSection />} />
+          <Route path="/Footwear" element={<FootWear />} />
+          <Route path="/Groceries" element={<Groceries />} />
+          <Route path="/About" element={<About />} />
           <Route path="/Contact" element={<Contact />} />
-          <Route path="/cart" element={<Cart productId={0} />} />
+          <Route path="/Cart" element={<Cart productId={0} />} />
           <Route path="/Contact" element={<Wishlist />} />
-          <Route path="/checkout" element={<Checkout />} />
+          <Route path="/Checkout" element={<Checkout />} />
         </Routes>
         <Footer />
       </BrowserRouter>
