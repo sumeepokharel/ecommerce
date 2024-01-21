@@ -5,6 +5,7 @@ import LoginPage from "../../pages/loginPage";
 import Registration from "../../pages/Registration";
 import styles from "./navbar.module.css"; // Import the CSS module
 import pic from "../Assets/images/shoppingbag.png";
+import SearchComponent from "../search";
 
 function Navbar() {
   const [showLoginModal, setShowLoginModal] = useState(false);
@@ -30,6 +31,8 @@ function Navbar() {
         />
         <p className={styles["brand-name"]}>SP ONLINE </p>
       </div>
+      <SearchComponent />
+
       <ul className={styles["nav-menu"]}>
         <li>
           <Link to="/">Home</Link>
