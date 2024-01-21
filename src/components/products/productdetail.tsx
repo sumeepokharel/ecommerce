@@ -61,7 +61,10 @@ const ProductDetailPage: React.FC = () => {
                 value={selectedSize}
                 onChange={(e) => handleSizeChange(e.target.value)}
               >
-                {/* ...options */}
+                <option value="extra small"> XS</option>
+                <option value="small">S</option>
+                <option value="medium">M</option>
+                <option value="large">L</option>
               </select>
             </div>
 

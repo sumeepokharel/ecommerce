@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { TextField, Button, Container, Typography } from "@mui/material";
+import styles from "./Registration.module.css";
 
 const Registration = () => {
   const [formData, setFormData] = useState({
@@ -28,10 +29,14 @@ const Registration = () => {
 
   return (
     <Container component="main" maxWidth="xs" style={{ marginTop: "130px" }}>
-      <Typography component="h1" variant="h5">
+      <Typography
+        component="h1"
+        variant="h5"
+        className={styles["registration-header"]}
+      >
         SignUp
       </Typography>
-      <form onSubmit={handleSubmit}>
+      <form className={styles["registration-form"]} onSubmit={handleSubmit}>
         <TextField
           variant="outlined"
           margin="normal"
@@ -42,6 +47,7 @@ const Registration = () => {
           name="name"
           value={formData.name}
           onChange={handleChange}
+          className={styles["registration-input"]}
         />
 
         <TextField
@@ -50,11 +56,12 @@ const Registration = () => {
           required
           fullWidth
           id="email"
-          label="email "
+          label="email"
           name="email"
           type="email"
           value={formData.email}
           onChange={handleChange}
+          className={styles["registration-input"]}
         />
 
         <TextField
@@ -68,8 +75,15 @@ const Registration = () => {
           type="password"
           value={formData.password}
           onChange={handleChange}
+          className={styles["registration-input"]}
         />
-        <Button type="submit" fullWidth variant="contained" color="primary">
+        <Button
+          type="submit"
+          fullWidth
+          variant="contained"
+          color="primary"
+          className={styles["registration-button"]}
+        >
           SignUp
         </Button>
       </form>

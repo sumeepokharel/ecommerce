@@ -9,6 +9,7 @@ import {
 } from "../redux/cartSlice";
 import { Navigate, useNavigate } from "react-router-dom";
 import Checkout from "./Checkout";
+import styles from "./cart.module.css";
 
 interface IInfo {
   productId: number;
@@ -60,9 +61,9 @@ const Cart: React.FC<IInfo> = ({ productId, redirectToCart }) => {
   };
 
   return (
-    <div className="flex">
-      {/* Cart page on the left */}
-      <div className="flex-shrink-0 w-2/3">
+    <div className={styles["cart-container"]}>
+      {/* Cart details on the left */}
+      <div className={styles["cart-details"]}>
         <h2 className="text-2xl font-bold mb-4">Cart</h2>
         {product && (
           <table className="w-full">
@@ -121,7 +122,7 @@ const Cart: React.FC<IInfo> = ({ productId, redirectToCart }) => {
       {/* Proceed to Checkout button on the right */}
       <div className="flex-shrink-0 w-1/3 p-4">
         <button
-          className="bg-blue-500 text-white py-2 px-4 rounded"
+          className={styles["checkout-button"]}
           onClick={handleProceedToCheckout}
         >
           Proceed to Checkout

@@ -13,8 +13,11 @@ const Footer = () => {
       </div>
       <ul className={styles.footerLinks}>
         <li>Company</li>
-        <li>Products</li>
+
         <li>Offices</li>
+        <li>
+          <Link to="/products">Products</Link>
+        </li>
         <li>
           <Link to="/about">About</Link>
         </li>

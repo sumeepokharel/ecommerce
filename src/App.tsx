@@ -18,6 +18,7 @@ import Checkout from "./pages/Checkout";
 import Wishlist from "./components/wishlist/wishlist";
 import ProductDetailPage from "./components/products/productdetail";
 import Products from "./components/products/Products";
+import UserProfile from "./components/UserProfile";
 
 const App = () => {
   return (
@@ -31,6 +32,7 @@ const App = () => {
           <Route path="/" element={<HomePage />} />
           <Route path="/SignUp" element={<Registration />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/userprofile" element={<UserProfile />} />
           <Route path="/products" element={<Products />} />
           <Route path="/product/:productId" element={<ProductDetailPage />} />
           <Route path="/Men" element={<MensSection />} />

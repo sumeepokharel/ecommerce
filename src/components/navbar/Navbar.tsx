@@ -49,9 +49,6 @@ function Navbar() {
         <li>
           <Link to="/Footwear">Footwear</Link>
         </li>
-        <li>
-          <Link to="/products">Products</Link>
-        </li>
       </ul>
       <div className={styles["nav-login-cart"]}>
         <button onClick={handleRegistrationButtonClick}>SignUp</button>

@@ -1,12 +1,15 @@
 .product-detail-container {
-  max-width: 600px;
+  max-width: 1500px;
   margin: auto;
+  background: linear-gradient(180deg, #fde1ff 0%, #e1ffea22 60%);
+  box-shadow: inset;
 }
 
 .product-name {
   font-size: 24px;
   margin-bottom: 16px;
   color: blue;
+  font-size: xx-large;
 }
 
 .product-info {
@@ -19,29 +22,37 @@
   height: 500px;
   object-fit: cover;
   margin-right: 20px;
+  align-items: center;
 }
 
 .product-description {
   flex-grow: 1;
+  text-align: center;
+  color: rgb(255, 0, 123);
+  font-size: xx-large;
 }
 
 .product-price {
   font-size: 18px;
   margin-top: 8px;
+  color: blue;
 }
 
 .selection-container {
   display: flex;
   margin-top: 16px;
+  background: linear-gradient(180deg, #fde1ff 0%, #e1ffea22 60%);
+  color: red;
 }
 
 .select-box {
   margin-right: 20px;
+  color: pink;
 }
 
 .add-to-cart-btn {
   margin-top: 5px;
-  background-color: #506c99;
+  background-color: #0e61e6;
   color: white;
   padding: 10px 20px;
   font-size: 16px;
