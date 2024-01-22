@@ -1,8 +1,7 @@
-import React from "react";
 import { FaWhatsapp, FaInstagram, FaPinterest } from "react-icons/fa";
 import { Link } from "react-router-dom"; // Import Link from react-router-dom
 import styles from "./footer.module.css";
-import footer_logo from "../Assets/images/shoppingbag.png";
+import footer_logo from "../Assets/images/logo_trial copy.png";
 
 const Footer = () => {
   return (

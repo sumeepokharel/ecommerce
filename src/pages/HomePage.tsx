@@ -4,11 +4,7 @@ import styles from "../components/Section.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../redux/store";
 import { Items, addToCart } from "../redux/cartSlice";
-import {
-  addToWishlist,
-  removeFromWishlist,
-  WishlistItem,
-} from "../redux/wishListSlice";
+import { addToWishlist, removeFromWishlist } from "../redux/wishListSlice";
 
 interface KidsProduct {
   productId: number;
@@ -21,7 +17,7 @@ interface KidsProduct {
 const HomePage: React.FC = () => {
   const [kidsProducts, setKidsProducts] = useState<KidsProduct[]>([]);
   const dispatch = useDispatch<AppDispatch>();
-  const products = useSelector((state: RootState) => state.products.item);
+
   const wishlist = useSelector((state: RootState) => state.wishlist.items);
 
   useEffect(() => {

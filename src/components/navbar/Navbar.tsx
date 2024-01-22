@@ -4,7 +4,7 @@ import { FaShoppingCart } from "react-icons/fa";
 import LoginPage from "../../pages/loginPage";
 import Registration from "../../pages/Registration";
 import styles from "./navbar.module.css"; // Import the CSS module
-import pic from "../Assets/images/shoppingbag.png";
+import pic from "../Assets/images/logo_trial.png";
 import SearchComponent from "../search";
 
 function Navbar() {
@@ -27,9 +27,8 @@ function Navbar() {
           src={pic}
           alt="Shopping Bag"
           className={styles["new-shopping-icon"]}
-          style={{ width: "50px", height: "50px" }}
+          style={{ width: "100px", height: "100px" }}
         />
-        <p className={styles["brand-name"]}>SP ONLINE </p>
       </div>
       <SearchComponent />
 
@@ -62,7 +61,6 @@ function Navbar() {
       </div>
 
       {showLoginModal && <LoginPage />}
-
       {showRegistrationModal && <Registration />}
     </div>
   );

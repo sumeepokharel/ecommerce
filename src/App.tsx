@@ -4,7 +4,7 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 import LoginPage from "./pages/loginPage";
 import Registration from "./pages/Registration";
 import HomePage from "./pages/HomePage";
-import Cart from "./pages/cart";
+import Cart from "./pages/cart/cart";
 import MensSection from "./components/MenSection";
 import WomenSection from "./components/womenSection";
 import KidsSection from "./components/KidsSection";

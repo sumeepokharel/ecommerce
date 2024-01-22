@@ -1,14 +1,14 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { RootState } from "../redux/store";
+import { RootState } from "../../redux/store";
 import {
   deleteItem as deleteItemAction,
   increaseItem as increaseItemAction,
   decreaseItem as decreaseItemAction,
   clearCart as clearCartAction,
-} from "../redux/cartSlice";
+} from "../../redux/cartSlice";
 import { Navigate, useNavigate } from "react-router-dom";
-import Checkout from "./Checkout";
+import Checkout from "../Checkout";
 import styles from "./cart.module.css";
 
 interface IInfo {
