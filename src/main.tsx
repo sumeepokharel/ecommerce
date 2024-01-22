@@ -4,6 +4,7 @@ import { Provider } from "react-redux";
 import { store } from "../src/redux/store";
 import "./index.css";
 import App from "./App";
+import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement

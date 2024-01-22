@@ -1,11 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../redux/store";
-import {
-  deleteItem as deleteItemAction,
-  increaseItem as increaseItemAction,
-  decreaseItem as decreaseItemAction,
-  clearCart as clearCartAction,
-} from "../redux/cartSlice";
+import { clearCart as clearCartAction } from "../redux/cartSlice";
 
 const Checkout: React.FC = () => {
   const cartItems = useSelector((state: RootState) => state.cart.items);

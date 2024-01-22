@@ -19,6 +19,7 @@ import Wishlist from "./components/wishlist/wishlist";
 import ProductDetailPage from "./components/products/productdetail";
 import Products from "./components/products/Products";
 import UserProfile from "./components/UserProfile";
+import Paypal from "./pages/Paypal";
 
 const App = () => {
   return (
@@ -45,6 +46,7 @@ const App = () => {
           <Route path="/Cart" element={<Cart productId={0} />} />
           <Route path="/Contact" element={<Wishlist />} />
           <Route path="/Checkout" element={<Checkout />} />
+          <Route path="/paypal" element={<Paypal />} />
         </Routes>
         <Footer />
       </BrowserRouter>

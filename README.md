@@ -1,6 +1,6 @@
 <h1>ECOMMERCE-WEBSITE/react.js/typescript/Redux/Springboot/FetchApi<h1>
 
-<h1> E-COMMERCE WEBSITE PROJECT<h1>
+<h2> E-COMMERCE WEBSITE PROJECT<h2>
 <p> Welcome to Sumitra Online store Ecommerce project.This is Web application built using React js, Redux as a frontend and java Springboot as a backend technologies.This website allows users to browse items, add them to cart, and complete the purchase process. </p>
 
 <h1> Table of Contents</h1>
@@ -52,10 +52,11 @@ Users can view their wish contents and addtocart  or remove items.</p>
 <h3>3.Start the React development server:</h3>
 <p>npm run dev</p>
 
-<h3>in backend  springboot application </h3>
-<p>git clone></p><a>https://github.com/kchaitanya-training/productmanagment.git</a>
-<p>import to your eclipse workspace as a existing maven project</P>
-<p> at first run serviceregistry and then run otherspring boot application one by one</p>
+<h3>In backend  springboot application </h3>
+<p>git clone </p><a>https://github.com/kchaitanya-training/productmanagment.git</a>
+<p>import project to your eclipse workspace as a existing maven project</P>
+
+<p> At first run serviceregistry and then run otherspring boot application one by one</p>
 
 <h2>Usage</h2>
 <ul>
