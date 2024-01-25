@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import axios, { AxiosResponse } from "axios";
 import { useNavigate } from "react-router-dom";
 import styles from "./Login.module.css";
+import { useDispatch } from "react-redux";
+import { setLoggedInUser } from "../redux/authSlice";
 
 interface LoginResponse {
   token: string;
@@ -10,10 +12,10 @@ interface LoginResponse {
 const Login: React.FC = () => {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [token, setToken] = useState<string | null>(null);
   const [loginSuccess, setLoginSuccess] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -27,11 +29,13 @@ const Login: React.FC = () => {
         }
       );
       const authToken = response.data.token;
-      setToken(authToken);
       localStorage.setItem("token", authToken);
 
       // Set login success to true
       setLoginSuccess(true);
+
+      // Dispatch the setLoggedInUser action
+      dispatch(setLoggedInUser(username));
 
       // Redirect to the Cart page after successful login
       navigate("/Cart");

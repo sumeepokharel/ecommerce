@@ -16,13 +16,17 @@ export interface CartState {
   itemQuantity: number;
 }
 
-const initialState: CartState = {
-  items: [],
-  totalAmount: 0,
-  itemQuantity: 0,
-};
+// Retrieve cart state from localStorage
+const storedCart = localStorage.getItem("cart");
+const initialState: CartState = storedCart
+  ? JSON.parse(storedCart)
+  : {
+      items: [],
+      totalAmount: 0,
+      itemQuantity: 0,
+    };
 
-export const cartSlice = createSlice({
+const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
@@ -39,6 +43,9 @@ export const cartSlice = createSlice({
       state.totalAmount += action.payload.price;
 
       toast.success("Item added to cart!");
+
+      // Save cart state to localStorage
+      localStorage.setItem("cart", JSON.stringify(state));
     },
     deleteItem: (state, action: PayloadAction<number>) => {
       const itemToRemove = state.items.find(
@@ -50,6 +57,9 @@ export const cartSlice = createSlice({
         state.totalAmount -= itemToRemove.price * itemToRemove.quantity;
         state.totalAmount = parseFloat(state.totalAmount.toFixed(2));
       }
+
+      // Save cart state to localStorage
+      localStorage.setItem("cart", JSON.stringify(state));
     },
     increaseItem: (state, action: PayloadAction<number>) => {
       const item = state.items.find((item) => item.id === action.payload);
@@ -57,6 +67,9 @@ export const cartSlice = createSlice({
         item.quantity += 1;
         state.itemQuantity += 1;
         state.totalAmount += item.price;
+
+        // Save cart state to localStorage
+        localStorage.setItem("cart", JSON.stringify(state));
       }
     },
     decreaseItem: (state, action: PayloadAction<number>) => {
@@ -65,12 +78,18 @@ export const cartSlice = createSlice({
         item.quantity -= 1;
         state.itemQuantity -= 1;
         state.totalAmount -= item.price;
+
+        // Save cart state to localStorage
+        localStorage.setItem("cart", JSON.stringify(state));
       }
     },
     clearCart: (state) => {
       state.items = [];
       state.itemQuantity = 0;
       state.totalAmount = 0;
+
+      // Clear cart state from localStorage
+      localStorage.removeItem("cart");
     },
   },
 });

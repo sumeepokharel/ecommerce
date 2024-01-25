@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../redux/store";
 import {
@@ -7,22 +7,19 @@ import {
   decreaseItem as decreaseItemAction,
   clearCart as clearCartAction,
 } from "../../redux/cartSlice";
-import { Navigate, useNavigate } from "react-router-dom";
-import Checkout from "../Checkout";
+import { useNavigate } from "react-router-dom";
 import styles from "./cart.module.css";
 
 interface IInfo {
   productId: number;
-  redirectToCart?: boolean; // New prop to handle navigation
+  redirectToCart?: boolean;
 }
 
-const Cart: React.FC<IInfo> = ({ productId, redirectToCart }) => {
-  const navigate = useNavigate(); // Add this line to get the navigate function
-
-  // If redirectToCart is true, navigate to the cart
-  if (redirectToCart) {
-    return <Navigate to="/cart" />;
-  }
+const Cart: React.FC<IInfo> = ({ productId }) => {
+  const navigate = useNavigate();
+  const isAuthenticated = useSelector(
+    (state: RootState) => state.auth.isAuthenticated
+  );
 
   // Fetch the product details based on productId (replace this with your actual logic)
   const product = useSelector((state: RootState) =>
@@ -59,6 +56,10 @@ const Cart: React.FC<IInfo> = ({ productId, redirectToCart }) => {
     // Use useNavigate to navigate to the "/Checkout" route
     navigate("/Checkout");
   };
+
+  useEffect(() => {
+    console.log("Is Authenticated (Effect):", isAuthenticated);
+  }, [isAuthenticated]);
 
   return (
     <div className={styles["cart-container"]}>
@@ -119,14 +120,18 @@ const Cart: React.FC<IInfo> = ({ productId, redirectToCart }) => {
         <button onClick={handleClearCart}>Clear Cart</button>
       </div>
 
-      {/* Proceed to Checkout button on the right */}
+      {/* Proceed to Checkout button at the bottom */}
       <div className="flex-shrink-0 w-1/3 p-4">
-        <button
-          className={styles["checkout-button"]}
-          onClick={handleProceedToCheckout}
-        >
-          Proceed to Checkout
-        </button>
+        {isAuthenticated ? (
+          <button
+            className={styles["checkout-button"]}
+            onClick={handleProceedToCheckout}
+          >
+            Proceed to Checkout
+          </button>
+        ) : (
+          <p>Please log in to proceed to checkout.</p>
+        )}
       </div>
     </div>
   );

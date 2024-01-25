@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../redux/store";
 import { Items, addToCart } from "../redux/cartSlice";
 import { addToWishlist, removeFromWishlist } from "../redux/wishListSlice";
+import Newsletter from "../components/newletter/Newsletter";
 
 interface KidsProduct {
   productId: number;
@@ -118,6 +119,7 @@ const HomePage: React.FC = () => {
           </div>
         ))}
       </div>
+      <Newsletter />
     </div>
   );
 };

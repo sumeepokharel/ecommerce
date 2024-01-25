@@ -13,7 +13,7 @@ const Wishlist: React.FC = () => {
 
   return (
     <div>
-      <h2>Wishlist</h2>
+      <h2>Wishlist Items</h2>
       <ul>
         {wishlistItems.map((item) => (
           <li key={item.id}>

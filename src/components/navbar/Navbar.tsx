@@ -3,20 +3,38 @@ import { Link } from "react-router-dom";
 import { FaShoppingCart } from "react-icons/fa";
 import LoginPage from "../../pages/loginPage";
 import Registration from "../../pages/Registration";
-import styles from "./navbar.module.css"; // Import the CSS module
+import styles from "./navbar.module.css";
 import pic from "../Assets/images/logo_trial.png";
 import SearchComponent from "../search";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../redux/authSlice";
+import { RootState } from "../../redux/store";
+
+interface State {
+  auth: {
+    username: string | null;
+  };
+}
 
 function Navbar() {
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showRegistrationModal, setShowRegistrationModal] = useState(false);
-
+  const cartCount = useSelector((state: RootState) => state.cart.itemQuantity);
   const handleLoginButtonClick = () => {
     setShowLoginModal(true);
   };
 
   const handleRegistrationButtonClick = () => {
     setShowRegistrationModal(true);
+  };
+
+  // Access the logged-in username from Redux state
+  const loggedInUsername = useSelector((state: State) => state.auth.username);
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    // Dispatch the logout action
+    dispatch(logout());
   };
 
   return (
@@ -51,12 +69,26 @@ function Navbar() {
         <li>
           <Link to="/Footwear">Footwear</Link>
         </li>
+        <li>
+          <Link to="/Wishlist">Wishlist</Link>
+        </li>
       </ul>
       <div className={styles["nav-login-cart"]}>
-        <button onClick={handleRegistrationButtonClick}>SignUp</button>
-        <button onClick={handleLoginButtonClick}>Login</button>
-        <Link to="/cart">
+        {/* Display username if logged in */}
+        {loggedInUsername ? (
+          <>
+            <p>Welcome, {loggedInUsername}!</p>
+            <button onClick={handleLogout}>Logout</button>
+          </>
+        ) : (
+          <>
+            <button onClick={handleRegistrationButtonClick}>SignUp</button>
+            <button onClick={handleLoginButtonClick}>Login</button>
+          </>
+        )}
+        <Link to="/cart" className={styles["cart-link"]}>
           <FaShoppingCart className={styles["shopping-cart-icon"]} />
+          <span className={styles["cart-count"]}>{cartCount}</span>
         </Link>
       </div>
 

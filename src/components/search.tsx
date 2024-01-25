@@ -91,7 +91,7 @@ function SearchComponent() {
               <img
                 src={result.imageUrl}
                 alt={result.productName}
-                className="p-2 max-w-full h-auto max-h-48"
+                className="p-2 max-w-20 h-auto max-h-20"
               />
               <div className="text-sm text-slate-500 mx-5 mt-2"></div>
               <div className="mx-5 mt-5 text-lg">${result.productPrice}</div>

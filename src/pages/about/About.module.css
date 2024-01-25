@@ -1,0 +1,30 @@
+.aboutContainer {
+  color: hotpink;
+  max-width: 800px;
+  margin: 20px auto;
+}
+
+.aboutContent {
+  background: linear-gradient(180deg, #fde1ff 0%, #e1ffea22 60%);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 20px 10px 0px rgba(0, 0, 0, 0.1);
+}
+
+.aboutTitle {
+  font-size: 2.5em;
+  font-weight: bold;
+  color: #343a40;
+}
+
+.aboutDescription {
+  margin-bottom: 15px;
+  color: #cc1168;
+}
+.description {
+  color: rgb(35, 14, 230);
+}
+
+.aboutDescription:last-child {
+  margin-bottom: 0;
+}

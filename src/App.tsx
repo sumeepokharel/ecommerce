@@ -8,12 +8,11 @@ import Cart from "./pages/cart/cart";
 import MensSection from "./components/MenSection";
 import WomenSection from "./components/womenSection";
 import KidsSection from "./components/KidsSection";
-import FootWear from "./components/footwerar";
+import FootWear from "./components/footwear";
 import Groceries from "./components/groceries";
 import Footer from "./components/footer/Footer";
-import MainPage from "./components/Mainpage";
-import About from "./pages/About";
-import Contact from "./pages/Contact";
+import About from "./pages/about/About";
+import Contact from "./pages/contact/Contact";
 import Checkout from "./pages/Checkout";
 import Wishlist from "./components/wishlist/wishlist";
 import ProductDetailPage from "./components/products/productdetail";
@@ -27,7 +26,6 @@ const App = () => {
       <BrowserRouter>
         <Header />
         <Navbar />
-        <MainPage />
 
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -44,7 +42,7 @@ const App = () => {
           <Route path="/About" element={<About />} />
           <Route path="/Contact" element={<Contact />} />
           <Route path="/Cart" element={<Cart productId={0} />} />
-          <Route path="/Contact" element={<Wishlist />} />
+          <Route path="/wishlist" element={<Wishlist />} />
           <Route path="/Checkout" element={<Checkout />} />
           <Route path="/paypal" element={<Paypal />} />
         </Routes>

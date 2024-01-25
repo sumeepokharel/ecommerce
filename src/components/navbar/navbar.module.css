@@ -78,5 +78,8 @@ body.modal-open {
 
 .shopping-cart-icon {
   font-size: 28px;
-  color: #ff4500;
+  color: #d9067a;
+}
+.cart-count {
+  color: rgb(206, 3, 118);
 }

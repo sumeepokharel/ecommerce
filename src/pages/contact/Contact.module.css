@@ -1,0 +1,66 @@
+.contactContainer {
+  max-width: 800px;
+  margin: 20px auto;
+}
+
+.contact {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  background: pink;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+}
+
+.contact:hover {
+  transform: scale(1.05);
+}
+
+.contactItem {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.contactItem:hover {
+  background-color: #b95e5e;
+}
+
+.address {
+  background: linear-gradient(180deg, #fde1ff 0%, #e1ffea22 60%);
+}
+
+.phone {
+  background: linear-gradient(180deg, #fde1ff 0%, #e1ffea22 60%);
+}
+
+.email {
+  background: linear-gradient(180deg, #fde1ff 0%, #e1ffea22 60%);
+}
+
+.linkedin {
+  background: linear-gradient(180deg, #fde1ff 0%, #e1ffea22 60%);
+}
+
+.github {
+  background-color: #be74aa;
+}
+
+.contactItem svg {
+  margin-right: 10px;
+}
+
+.contactItem div,
+.contactItem h4 {
+  margin: 0;
+  color: #5f4b4b;
+}
+
+.contactItem a {
+  text-decoration: none;
+  color: #ffffff;
+}
