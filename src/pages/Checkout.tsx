@@ -1,10 +1,15 @@
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../redux/store";
 import { clearCart as clearCartAction } from "../redux/cartSlice";
+import { setLoggedInUser } from "../redux/authSlice";
+import { useNavigate } from "react-router-dom";
 
 const Checkout: React.FC = () => {
   const cartItems = useSelector((state: RootState) => state.cart.items);
+  const auth = useSelector((state: RootState) => state.auth);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   // Calculate subtotal, shipping, and total items
   const subtotal = cartItems.reduce(
@@ -17,19 +22,26 @@ const Checkout: React.FC = () => {
 
   const handlePlaceOrder = async () => {
     try {
+      // Dispatch the setLoggedInUser action with the username
+      dispatch(setLoggedInUser("sumitrapokharel"));
+
+      // Prepare the order data
+      const orderData = {
+        userId: auth.username || "", // Access username from auth slice
+        items: cartItems.map((item) => ({
+          productId: item.id,
+          quantity: item.quantity,
+          price: item.price,
+        })),
+      };
+
       // Simulate placing an order
       const response = await fetch("http://localhost:8666/order", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          cartItems: cartItems,
-          subtotal: subtotal,
-          shipping: shipping,
-          totalItems: totalItems,
-          total: total,
-        }),
+        body: JSON.stringify(orderData),
       });
 
       if (!response.ok) {
@@ -38,6 +50,9 @@ const Checkout: React.FC = () => {
 
       // Clear the cart after a successful order placement
       dispatch(clearCartAction());
+
+      // Redirect to a success page or handle success as needed
+      navigate("/order-success");
     } catch (error) {
       console.error("Error placing order:", error);
 

@@ -3,7 +3,6 @@ import { configureStore } from "@reduxjs/toolkit";
 import cartReducer from "./cartSlice";
 import productReducer from "./productSlice";
 
-import { combineReducers } from "redux";
 import wishListSliceReducer from "./wishListSlice";
 import authReducer from "./authSlice";
 

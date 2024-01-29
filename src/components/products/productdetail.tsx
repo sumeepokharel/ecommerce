@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { Product } from "../../redux/productSlice";
-import styles from "./ProductDetailPage.module.css";
 
 const ProductDetailPage: React.FC = () => {
   const { productId } = useParams<{ productId: string }>();
@@ -37,29 +36,32 @@ const ProductDetailPage: React.FC = () => {
   };
 
   return (
-    <div className={styles["product-detail-container"]}>
+    <div className="product-detail-container">
       {product ? (
         <>
-          <h2 className={styles["product-name"]}>{product.productName}</h2>
-          <div className={styles["product-info"]}>
-            <img
-              src={product.imageUrl}
-              alt={product.productName}
-              className={styles["product-image"]}
-              style={{ boxShadow: `0 0 5px ${selectedColor}` }}
-            />
-            <div className={styles["product-description"]}>
+          <h2 className="product-name">{product.productName}</h2>
+          <div className="product-info grid grid-cols-2 gap-4">
+            {[1, 2].map((index) => (
+              <img
+                key={index}
+                src={product.imageUrl}
+                alt={product.productName}
+                className={`product-image col-span-1 shadow-md border-2 border-${selectedColor.toLowerCase()}`}
+              />
+            ))}
+            <div className="product-description col-span-2">
               <p>{product.productDescription}</p>
-              <p className={styles["product-price"]}>${product.productPrice}</p>
+              <p className="product-price">${product.productPrice}</p>
             </div>
           </div>
 
-          <div className={styles["selection-container"]}>
-            <div className={styles["select-box"]}>
-              <label>Select Size:</label>
+          <div className="selection-container mt-4">
+            <div className="select-box">
+              <label className="mr-2">Select Size:</label>
               <select
                 value={selectedSize}
                 onChange={(e) => handleSizeChange(e.target.value)}
+                className="border p-2 rounded"
               >
                 <option value="extra small"> XS</option>
                 <option value="small">S</option>
@@ -68,11 +70,12 @@ const ProductDetailPage: React.FC = () => {
               </select>
             </div>
 
-            <div className={styles["select-box"]}>
-              <label>Select Color:</label>
+            <div className="select-box ml-4">
+              <label className="mr-2">Select Color:</label>
               <select
                 value={selectedColor}
                 onChange={(e) => handleColorChange(e.target.value)}
+                className="border p-2 rounded"
               >
                 <option value="red">Red</option>
                 <option value="blue">Blue</option>
@@ -81,7 +84,9 @@ const ProductDetailPage: React.FC = () => {
             </div>
           </div>
 
-          <button className={styles["add-to-cart-btn"]}>Add to Cart</button>
+          <button className="add-to-cart-btn mt-4 bg-indigo-600 text-white py-2 px-4 rounded hover:bg-indigo-700">
+            Add to Cart
+          </button>
         </>
       ) : (
         <p>Loading...</p>
