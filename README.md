@@ -62,16 +62,13 @@
   <li>Add products to your cart,add to wishlist, sort the products, update quantities, and place orders.</li>
 </ul>
 <h2>Screenshots</h2>
-
-<img width="948" alt="image" src="">
-<img width="950" alt="image" src="">
-<img width="949" alt="image" src="">
-<img width="943" alt="image" src="">
-<img width="950" alt="image" src="">
-<img width="948" alt="image" src="">
-<img width="946" alt="image" src="">
-<img width="950" alt="image" src="">
-<img width="945" alt="image" src="">
+![Screenshot 1](public/screenshots/home.png)
+![Screenshot 2](public/screenshots/men.png)
+![Screenshot 1](public/screenshots/kids.png)
+![Screenshot 2](public/screenshots/shoes.png)
+![Screenshot 1](public/screenshots/women.png)
+![Screenshot 2](public/screenshots/login.png)
+![Screenshot 1](public/screenshots/cart.png)
 
 <h2>Contributing</h2>
 <p>Contributions to this project are welcome. If you find any bugs or have suggestions for improvement, please open an issue or create a pull request.</p>
